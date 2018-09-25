@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+
+
+<style type="text/css">
+ul li {
+cursor:pointer;
+}
+
+button {
+cursor:pointer;
+}
+</style>
+
+<script src="angular.min.js"></script>
+  <!-- <script src="app.js"></script> -->
+    <script src="namectrlr.js"></script>
+</head>
+<body>
+
+	<div ng-app="expressionExample">
+		<div ng-controller="ExampleController" class="expressions">
+  Expression:
+  <input type='text' ng-model="expr" size="80"/>
+  <input type='number' ng-model="phno" size="10" allow-only-numbers/>
+  
+  <button ng-click="addExp(expr)">Evaluate</button>
+  <ul>
+   <li ng-repeat="expr in exprs track by $index">
+     [ <a href="" ng-click="removeExp($index)">X</a> ]
+     <code>{{expr}}</code> => <span ng-bind="$eval(expr)"></span>
+     <!-- $parent.$eval -->
+    </li>
+  </ul>
+  json data is : {{jsonarray | json}}<br><br>
+  weburl : {{weburl}}<br><br>
+   urlhost : {{urlhost}}<br><br>
+    urlport : {{urlport}}<br><br>
+     urlprotocol : {{urlprotocol}}<br><br>
+     
+     <ul>
+     	<li ng-repeat="user in arrlist" ng-click="getdetails($event,user)">
+		{{ user.name }}
+		</li>
+     </ul>
+     
+     <input type="checkbox" ng-model="checkSelect"/> Click Here 
+     <div ng-show="checkSelect">Checkbox Selected.....</div><br>
+    <!--  
+     <select name="usersDdn" ng-model="usersDd">
+<option value="">--Select User--</option>
+<option ng-repeat="user in arrlist" value="{{user.userid}}">{{user.name}}</option>
+</select> -->
+
+<select name="users" ng-options="user.name for user in arrlist" ng-model="userselected">
+<option value="">--Select User--</option>
+</select><br /><br />
+<span>User Name: {{userselected.name}}, UserId: {{userselected.userid}}</span>
+
+<input type="button" value="Submit" ng-click="checkselection()" /><br /><br />
+<span style="color:red">{{msg}}</span><br />
+  
+  <button ng-click="sendData()">Send</button>
+</div>
+<form name="personForm">
+<input type="text" name="pincode" ng-model="txtpin" ng-minlength="5" />
+<span style="color:Red" ng-show="personForm.pincode.$dirty&&personForm.pincode.$error.minlength"> Minimum 5 Characters Required </span>
+</form>
+
+
+	</div>
+<a href="http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1605088" class="drag" title="Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client"><img typeof="foaf:Image" class="img-responsive" src="https://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.png" alt="Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client" /></a>
+</body>
+</html>
